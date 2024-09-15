@@ -1,1 +1,1 @@
-# MedQ-
+# MedQ

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="stylef.css">
+    <style>
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            text-align: left;
+            margin-left: 80px;
+            color: #0077b6;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        h2{
+            align-items: center;
+        }
+
+        .logo span {
+            color: #e63946;
+        }
+
+        /* Make the backdrop transparent */
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.5) !important;
+            /* Slightly transparent backdrop */
+        }
+
+        /* Transparent modal background with opaque content */
+        .modal-content {
+            background: rgba(255, 255, 255, 0.8);
+            /* Slightly transparent modal content */
+            backdrop-filter: blur(10px);
+            /* Optional: Adds blur to the background */
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Customize button and form elements */
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Logout button positioned at the bottom */
+        .logout {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #e63946;
+            font-weight: bold;
+        }
+
+        .sidenav.closed {
+            width: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Small Menu Icon -->
+
+
+    <!-- Side Navigation -->
+
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <a href="dashboardfinal.html">Home</a>
+        <a href="profileuser.html">Profile</a>
+        <a href="useraccount.html">Account</a>
+        <a href="bookingstatus.html">Booking status</a>
+        <a href="feedback.html">Feedback</a>
+
+        <!-- Logout link at the bottom -->
+        <a href="home.html" class="logout">Logout</a>
+    </div>
+    </div>
+
+    <div class="hero3">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+
+
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Navigation Bar -->
+    <div class="hero3">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="dashboardfinal.html"></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <span class="menu-icon" onclick="openNav()">&#9776;</span>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <div class="logo">MedQ<span>+</span></div>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <form class="d-flex" id="hospitalForm">
+                        <input class="form-control me-2" list="hospitals" type="search" placeholder="Search"
+                            aria-label="Search" id="hospitalSearch">
+                        <datalist id="hospitals">
+                            <option value="City Hospital"></option>
+                            <option value="Sunshine Hospital"></option>
+                            <option value="Green Valley Medical Center"></option>
+                        </datalist>
+                        <button class="btn btn-outline-dark" type="submit">Search</button>
+                    </form>
+                    <a href="contact_us.html" class="btn btn-outline-dark mx-2">Contact Us</a>
+                    <a href="help.html" class="btn btn-outline-dark">Help</a>
+                </div>
+
+                <script>
+                    document.getElementById('hospitalForm').addEventListener('submit', function (event) {
+                        event.preventDefault(); // Prevent form submission
+
+                        const selectedValue = document.getElementById('hospitalSearch').value;
+
+                        // Redirect based on selected hospital
+                        if (selectedValue === 'City Hospital') {
+                            window.location.href = 'city_hospital.html';  // Redirect to City Hospital page
+                        } else if (selectedValue === 'Sunshine Hospital') {
+                            window.location.href = 'sunshine_hospital.html';  // Redirect to Sunshine Hospital page
+                        } else if (selectedValue === 'Green Valley Medical Center') {
+                            window.location.href = 'green_valley.html';  // Redirect to Green Valley Medical Center page
+                        } else {
+                            alert('Please select a valid hospital from the list.');
+                        }
+                    });
+                </script>
+
+
+            </div>
+        </nav>
+    </div>
+
+
+    <!-- Dashboard Cards -->
+    <div class="hero2">
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Bed Status Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center">
+                        <img src="bed_icon.png" class="card-img-top mx-auto" alt="Bed Status"
+                            style="width: 100px; margin-top: 10px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Bed Status</h5>
+                            <!-- Button that triggers the Bed Status modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#bedStatusModal">
+                                Check Bed Status
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call for Ambulance Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center">
+                        <img src="ambulance_icon.png" class="card-img-top mx-auto" alt="Call for Ambulance"
+                            style="width: 100px; margin-top: 10px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Call for Ambulance</h5>
+                            <!-- Button that triggers the Ambulance modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#ambulanceModal">
+                                Call Ambulance
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blood Availability Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center">
+                        <img src="blood_icon.png" class="card-img-top mx-auto" alt="Blood Availability"
+                            style="width: 100px; margin-top: 10px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Blood Availability</h5>
+                            <!-- Button that triggers the Blood Availability modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#bloodModal">
+                                Check Availability
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book Appointment Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center">
+                        <img src="appoint.png" class="card-img-top mx-auto" alt="Book Appointment"
+                            style="width: 100px; margin-top: 10px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Book Appointment</h5>
+                            <!-- Button that triggers the Appointment modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#appointmentModal">
+                                Book Appointment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medicine Inventory Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center">
+                        <img src="nicu.png" class="card-img-top mx-auto" alt="NICU Check"
+                            style="width: 100px; margin-top: 10px;">
+                        <div class="card-body">
+                            <h5 class="card-title">NICU Check</h5>
+                            <!-- Dashboard Button to Open NICU Modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#nicuModal">
+                                NICU Services
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NICU Modal -->
+                <div class="modal fade" id="nicuModal" tabindex="-1" aria-labelledby="nicuModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="nicuModalLabel">Find NICU Services</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="nicuForm">
+                                    <div class="mb-3">
+                                        <label for="stateSelect" class="form-label">Select State</label>
+                                        <select class="form-select" id="stateSelect" required>
+                                            <option value="" disabled selected>Select state</option>
+                                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                            <option value="Assam">Assam</option>
+                                            <option value="Bihar">Bihar</option>
+                                            <option value="Delhi">Delhi</option>
+                                            <option value="Gujarat">Gujarat</option>
+                                            <option value="Karnataka">Karnataka</option>
+                                            <option value="Maharashtra">Maharashtra</option>
+                                            <option value="Tamil Nadu">Tamil Nadu</option>
+                                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                            <option value="West Bengal">West Bengal</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="hospitalDetails" class="form-label">Hospitals with NICU
+                                            Services</label>
+                                        <div id="hospitalDetails" class="list-group"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    const hospitals = {
+                        "Andhra Pradesh": [
+                            { name: "Apollo Hospitals", address: "Vijayawada", contact: "+91-866-2424-567", location: "https://goo.gl/maps/ApolloVijayawada" },
+                            { name: "Care Hospitals", address: "Visakhapatnam", contact: "+91-891-6723-999", location: "https://goo.gl/maps/CareVizag" }
+                        ],
+                        "Assam": [
+                            { name: "GNRC Hospitals", address: "Guwahati", contact: "+91-361-2341-234", location: "https://goo.gl/maps/GNRCGuwahati" },
+                            { name: "Down Town Hospital", address: "Guwahati", contact: "+91-361-7100-100", location: "https://goo.gl/maps/DownTownGuwahati" }
+                        ],
+                        "Bihar": [
+                            { name: "Paras Hospital", address: "Patna", contact: "+91-612-7107-500", location: "https://goo.gl/maps/ParasPatna" },
+                            { name: "Ford Hospital", address: "Patna", contact: "+91-612-7105-000", location: "https://goo.gl/maps/FordPatna" }
+                        ],
+                        "Delhi": [
+                            { name: "AIIMS", address: "New Delhi", contact: "+91-11-2658-8500", location: "https://goo.gl/maps/AIIMSDelhi" },
+                            { name: "Max Hospital", address: "Saket, New Delhi", contact: "+91-11-4055-4055", location: "https://goo.gl/maps/MaxSaket" }
+                        ],
+                        "Gujarat": [
+                            { name: "Sterling Hospital", address: "Ahmedabad", contact: "+91-79-4001-8000", location: "https://goo.gl/maps/SterlingAhmedabad" },
+                            { name: "Zydus Hospital", address: "Ahmedabad", contact: "+91-79-6600-6600", location: "https://goo.gl/maps/ZydusAhmedabad" }
+                        ],
+                        "Karnataka": [
+                            { name: "Manipal Hospitals", address: "Bangalore", contact: "+91-80-2222-2222", location: "https://goo.gl/maps/ManipalBangalore" },
+                            { name: "Narayana Health", address: "Bangalore", contact: "+91-80-2215-2215", location: "https://goo.gl/maps/NarayanaBangalore" }
+                        ],
+                        "Maharashtra": [
+                            { name: "Lilavati Hospital", address: "Mumbai", contact: "+91-22-2675-1000", location: "https://goo.gl/maps/LilavatiMumbai" },
+                            { name: "Kokilaben Hospital", address: "Mumbai", contact: "+91-22-3099-3099", location: "https://goo.gl/maps/KokilabenMumbai" }
+                        ],
+                        "Tamil Nadu": [
+                            { name: "Apollo Hospitals", address: "Chennai", contact: "+91-44-2829-0200", location: "https://goo.gl/maps/ApolloChennai" },
+                            { name: "MIOT International", address: "Chennai", contact: "+91-44-4200-4200", location: "https://goo.gl/maps/MIOTChennai" }
+                        ],
+                        "Uttar Pradesh": [
+                            { name: "Fortis Hospital", address: "Noida", contact: "+91-120-2400-222", location: "https://goo.gl/maps/FortisNoida" },
+                            { name: "Yashoda Hospital", address: "Ghaziabad", contact: "+91-120-4188-000", location: "https://goo.gl/maps/YashodaGhaziabad" }
+                        ],
+                        "West Bengal": [
+                            { name: "AMRI Hospital", address: "Kolkata", contact: "+91-33-6606-3400", location: "https://goo.gl/maps/AMRIKolkata" },
+                            { name: "Woodlands Hospital", address: "Kolkata", contact: "+91-33-2456-7075", location: "https://goo.gl/maps/WoodlandsKolkata" }
+                        ]
+                    };
+
+                    document.getElementById('stateSelect').addEventListener('change', function () {
+                        const state = this.value;
+                        const hospitalDetails = document.getElementById('hospitalDetails');
+                        hospitalDetails.innerHTML = '';
+
+                        if (hospitals[state]) {
+                            hospitals[state].forEach(h => {
+                                hospitalDetails.innerHTML += `
+                    <div class="list-group-item">
+                        <h6>${h.name}</h6>
+                        <p><strong>Address:</strong> ${h.address}</p>
+                        <p><strong>Contact:</strong> ${h.contact}</p>
+                        <a href="${h.location}" target="_blank">View on Google Maps</a>
+                    </div>
+                `;
+                            });
+                        } else {
+                            hospitalDetails.innerHTML = '<p class="text-danger">No NICU services found for this state.</p>';
+                        }
+                    });
+                </script>
+
+
+
+
+
+                <!-- OPD Form/Status Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center">
+                        <img src="opd.jpg" class="card-img-top mx-auto" alt="OPD Form/Status"
+                            style="width: 100px; margin-top: 10px;">
+                        <div class="card-body">
+                            <h5 class="card-title">OPD Request</h5>
+                            <!-- Dashboard Button to Open OPD Modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#opdModal">
+                                OPD Request
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- OPD Modal -->
+        <div class="modal fade" id="opdModal" tabindex="-1" aria-labelledby="opdModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="opdModalLabel">Request OPD Slip</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="opdForm">
+                            <!-- Hospital Selection -->
+                            <div class="mb-3">
+                                <label for="hospitalName" class="form-label">Select Hospital</label>
+                                <select class="form-select" id="hospitalName" required>
+                                    <option value="" disabled selected>Select hospital</option>
+                                    <option value="City Hospital">City Hospital</option>
+                                    <option value="Sunshine Hospital">Sunshine Hospital</option>
+                                    <option value="Green Valley Medical Center">Green Valley Medical Center</option>
+                                </select>
+                            </div>
+
+                            <!-- User Issues -->
+                            <div class="mb-3">
+                                <label for="userIssue" class="form-label">Describe Your Issue</label>
+                                <textarea class="form-control" id="userIssue" rows="3"
+                                    placeholder="Describe your health issue" required></textarea>
+                            </div>
+
+                            <!-- Request OPD Slip Button -->
+                            <button type="button" class="btn btn-primary" id="requestOpdSlip">Request OPD Slip</button>
+                        </form>
+
+                        <!-- OPD Status Display -->
+                        <div id="opdStatus" class="mt-3"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Custom JS for OPD Slip Request -->
+        <script>
+            document.getElementById('requestOpdSlip').addEventListener('click', function () {
+                const hospitalName = document.getElementById('hospitalName').value;
+                const userIssue = document.getElementById('userIssue').value;
+                const opdStatusDiv = document.getElementById('opdStatus');
+
+                // Clear previous status
+                opdStatusDiv.innerHTML = '';
+
+                // Validate form inputs
+                if (hospitalName && userIssue) {
+                    // Simulate an OPD slip request (This can be replaced with an API call)
+                    const opdSlipNumber = Math.floor(Math.random() * 10000); // Simulated OPD slip number
+
+                    let statusHtml = `
+                <h6>OPD Slip Requested:</h6>
+                <p>Hospital: ${hospitalName}</p>
+                <p>Issue: ${userIssue}</p>
+                <p>OPD Slip Number: <strong>${opdSlipNumber}</strong></p>
+            `;
+                    opdStatusDiv.innerHTML = statusHtml;
+                } else {
+                    opdStatusDiv.innerHTML = '<p class="text-danger">Please fill out all fields to request an OPD slip.</p>';
+                }
+            });
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="modal fade" id="bedStatusModal" tabindex="-1" aria-labelledby="bedStatusModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bedStatusModalLabel">Search Bed Availability</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="bedStatusForm">
+                            <div class="mb-3">
+                                <label for="hospitalSelect" class="form-label">Select Hospital</label>
+                                <select class="form-select" id="hospitalSelect" required>
+                                    <option value="" disabled selected>Select a hospital</option>
+                                    <option value="City Hospital">City Hospital</option>
+                                    <option value="Sunshine Hospital">Sunshine Hospital</option>
+                                    <option value="Green Valley Medical Center">Green Valley Medical Center</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-primary" id="searchBeds">Search</button>
+                        </form>
+                        <div id="bedResults" class="mt-3"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample Bed Availability Data -->
+        <script>
+            const bedAvailabilityData = {
+                "City Hospital": {
+                    generalBeds: 12,
+                    emergencyBeds: 5
+                },
+                "Sunshine Hospital": {
+                    generalBeds: 8,
+                    emergencyBeds: 2
+                },
+                "Green Valley Medical Center": {
+                    generalBeds: 20,
+                    emergencyBeds: 10
+                }
+            };
+
+            document.getElementById('searchBeds').addEventListener('click', function () {
+                const hospital = document.getElementById('hospitalSelect').value;
+                const resultsDiv = document.getElementById('bedResults');
+                resultsDiv.innerHTML = ''; // Clear previous results
+
+                if (hospital && bedAvailabilityData[hospital]) {
+                    const { generalBeds, emergencyBeds } = bedAvailabilityData[hospital];
+                    let resultHtml = `
+                    <h6>${hospital}:</h6>
+                    <p>General Beds Available: ${generalBeds}</p>
+                    <p>Emergency Beds Available: ${emergencyBeds}</p>
+                `;
+                    resultsDiv.innerHTML = resultHtml;
+                } else {
+                    resultsDiv.innerHTML = '<p>No bed availability data for the selected hospital.</p>';
+                }
+            });
+        </script>
+
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+        <!-- Ambulance Modal -->
+        <div class="modal fade" id="ambulanceModal" tabindex="-1" aria-labelledby="ambulanceModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ambulanceModalLabel">Call for Ambulance</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h2>Nearby Hospital </h2>
+                        <p>Hospital: XYZ Hospital</p>
+                        <p>Phone Number: <a href="tel:108">108</a></p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <!-- New "Request for Ambulance" Button -->
+                        <button type="button" class="btn btn-primary" id="requestAmbulance">Request for
+                            Ambulance</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript to handle the click event and show the message -->
+        <script>
+            document.getElementById('requestAmbulance').addEventListener('click', function () {
+                alert('Your location has been sent, ambulance will be arriving soon');
+            });
+        </script>
+
+
+        <div class="modal fade" id="bloodModal" tabindex="-1" aria-labelledby="bloodModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bloodModalLabel">Search Blood Availability</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="bloodForm">
+                            <div class="mb-3">
+                                <label for="bloodGroup" class="form-label">Select Blood Group</label>
+                                <select class="form-select" id="bloodGroup" required>
+                                    <option value="" disabled selected>Select your blood group</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-primary" id="searchBlood">Search</button>
+                        </form>
+                        <div id="bloodResults" class="mt-3"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Custom JS -->
+        <script>
+            // Sample blood bank data
+            const bloodBankData = {
+                "A+": [
+                    { name: "City Hospital", address: "123 Main St", contact: "+1234567890" },
+                    { name: "Metro Blood Bank", address: "456 Oak St", contact: "+0987654321" }
+                ],
+                "O+": [
+                    { name: "Sunrise Hospital", address: "789 Pine St", contact: "+1122334455" }
+                ],
+                "B+": [
+                    { name: "Green Valley Blood Center", address: "111 Cedar St", contact: "+2233445566" }
+                ]
+            };
+
+            document.getElementById('searchBlood').addEventListener('click', function () {
+                const bloodGroup = document.getElementById('bloodGroup').value;
+                const resultsDiv = document.getElementById('bloodResults');
+                resultsDiv.innerHTML = ''; // Clear previous results
+
+                if (bloodGroup && bloodBankData[bloodGroup]) {
+                    let resultHtml = '<h6>Available in:</h6>';
+                    bloodBankData[bloodGroup].forEach(bloodBank => {
+                        resultHtml += `
+                    <div class="border p-2 mb-2">
+                        <strong>${bloodBank.name}</strong><br>
+                        Address: ${bloodBank.address}<br>
+                        Contact: <a href="tel:${bloodBank.contact}">${bloodBank.contact}</a>
+                    </div>
+                `;
+                    });
+                    resultsDiv.innerHTML = resultHtml;
+                } else {
+                    resultsDiv.innerHTML = '<p>No blood bank or hospital has this blood group available at the moment.</p>';
+                }
+            });
+        </script>
+
+        <!-- Appointment Form Modal -->
+        <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="appointmentModalLabel">Appointment Form</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="appointmentForm">
+                            <div class="mb-3">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="dateOfVisit" class="form-label">Date of Visit</label>
+                                <input type="date" class="form-control" id="dateOfVisit" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="appointmentDate" class="form-label">Date of Appointment</label>
+                                <input type="date" class="form-control" id="appointmentDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reason" class="form-label">Reason for Visit</label>
+                                <select class="form-select" id="reason" required>
+                                    <option selected disabled>Select Option</option>
+                                    <option value="Consultation">Consultation</option>
+                                    <option value="Follow-up">Follow-up</option>
+                                    <option value="Routine Checkup">Routine Checkup</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="preferredTime" class="form-label">Most Preferred Appointment Time</label>
+                                <input type="time" class="form-control" id="preferredTime" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="lessPreferredTime" class="form-label">Less Preferred Appointment
+                                    Time</label>
+                                <input type="time" class="form-control" id="lessPreferredTime" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="comments" class="form-label">Comments</label>
+                                <textarea class="form-control" id="comments" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="captchaCheck" required>
+                                <label class="form-check-label" for="captchaCheck">I'm not a robot</label>
+                            </div>
+                            <button type="submit" class="btn btn-dark">Schedule Appointment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+    <script>
+        window.embeddedChatbotConfig = {
+            chatbotId: "FQEK6e1vl9x_r6dO4u3ci",
+            domain: "www.chatbase.co"
+        }
+    </script>
+    <script src="https://www.chatbase.co/embed.min.js" chatbotId="FQEK6e1vl9x_r6dO4u3ci" domain="www.chatbase.co" defer>
+    </script>
+</body>
+
+</html>

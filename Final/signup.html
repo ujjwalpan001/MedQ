@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="hero1">
+        <div class="auth-container">
+            <h2>Sign Up</h2>
+             
+            <!-- Updated form with JavaScript validation and redirection -->
+            <form onsubmit="return validateAndRedirect()">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="contact">Contact Number:</label>
+                <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" placeholder="10-digit number" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+
+                <!-- Sign Up button -->
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Styling -->
+    <style>
+        p {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-container {
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <!-- <p>Already have an account? <a href="login.html">Login</a></p> -->
+    <p style="margin-top: 20px;">Register as <a href="reg_asHospital.html">Hospital</a></p>
+
+    
+    <script>
+        function validateAndRedirect() {
+            var name = document.getElementById('name').value;
+            var username = document.getElementById('username').value;
+            var contact = document.getElementById('contact').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+    
+            // Check if all fields are filled
+            if (name === "" || username === "" || contact === "" || email === "" || password === "" || confirmPassword === "") {
+                alert("Please fill out all fields.");
+                return false;
+            }
+    
+            // Validate contact number (assuming 10 digits)
+            if (!/^\d{10}$/.test(contact)) {
+                alert("Please enter a valid 10-digit contact number.");
+                return false;
+            }
+    
+            // Validate that password and confirm password match
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+    
+            // Save credentials to localStorage
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userPassword", password);
+    
+            // If valid, redirect to the login page
+            alert("Signup successful! Please login now.");
+            window.location.href = "home.html";
+            return false;
+        }
+    </script>
+    
+</body>
+</html>

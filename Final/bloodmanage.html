@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedQ+ Blood Data</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .header {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .update-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+
+        .update-btn:hover {
+            background-color: #218838;
+        }
+
+        .table-container {
+            margin-top: 30px;
+        }
+
+        .add-btn {
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .add-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('https://i.ibb.co/P41WVkW/background.jpg'); /* Adjust the path as per your file structure */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1 class="display-4">MedQ+ Blood Data</h1>
+        <p class="lead">Manage blood group records and donor information</p>
+    </div>
+
+    <!-- Blood Group Cards -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Card for each blood group -->
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">A+</h5>
+                        <p class="card-text">Units: <span id="aPlusUnits">50</span></p>
+                        <button class="btn update-btn" onclick="updateUnits('aPlusUnits')">Update</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">A-</h5>
+                        <p class="card-text">Units: <span id="aMinusUnits">40</span></p>
+                        <button class="btn update-btn" onclick="updateUnits('aMinusUnits')">Update</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">B+</h5>
+                        <p class="card-text">Units: <span id="bPlusUnits">30</span></p>
+                        <button class="btn update-btn" onclick="updateUnits('bPlusUnits')">Update</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">B-</h5>
+                        <p class="card-text">Units: <span id="bMinusUnits">20</span></p>
+                        <button class="btn update-btn" onclick="updateUnits('bMinusUnits')">Update</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">O+</h5>
+                        <p class="card-text">Units: <span id="oPlusUnits">70</span></p>
+                        <button class="btn update-btn" onclick="updateUnits('oPlusUnits')">Update</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">O-</h5>
+                        <p class="card-text">Units: <span id="oMinusUnits">25</span></p>
+                        <button class="btn update-btn" onclick="updateUnits('oMinusUnits')">Update</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">AB+</h5>
+                        <p class="card-text">Units: <span id="abPlusUnits">15</span></p>
+                        <button class="btn update-btn" onclick="updateUnits('abPlusUnits')">Update</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">AB-</h5>
+                        <p class="card-text">Units: <span id="abMinusUnits">10</span></p>
+                        <button class="btn update-btn" onclick="updateUnits('abMinusUnits')">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donor List -->
+    <div class="container table-container">
+        <h4 class="mb-4">Donor List</h4>
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Blood Group</th>
+                    <th>Contact</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="donorTable">
+                <tr>
+                    <td>John Doe</td>
+                    <td>30</td>
+                    <td>Male</td>
+                    <td>A+</td>
+                    <td>123-456-7890</td>
+                    <td><button class="btn delete-btn" onclick="deleteRow(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>25</td>
+                    <td>Female</td>
+                    <td>B+</td>
+                    <td>987-654-3210</td>
+                    <td><button class="btn delete-btn" onclick="deleteRow(this)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn add-btn" onclick="addDonor()">Add Donor</button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript -->
+    <script>
+        // Function to update blood units for each group
+        function updateUnits(bloodGroupId) {
+            const units = prompt('Enter updated amount of blood units:');
+            if (units && !isNaN(units)) {
+                document.getElementById(bloodGroupId).innerText = units;
+            } else {
+                alert('Please enter a valid number');
+            }
+        }
+
+        // Function to delete a donor row
+        function deleteRow(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+        }
+
+        // Function to add a new donor
+        function addDonor() {
+            const donorName = prompt('Enter donor name:');
+            const donorAge = prompt('Enter donor age:');
+            const donorGender = prompt('Enter donor gender:');
+            const donorBloodGroup = prompt('Enter donor blood group:');
+            const donorContact = prompt('Enter donor contact:');
+
+            if (donorName && donorAge && donorGender && donorBloodGroup && donorContact) {
+                const table = document.getElementById('donorTable');
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${donorName}</td>
+                    <td>${donorAge}</td>
+                    <td>${donorGender}</td>
+                    <td>${donorBloodGroup}</td>
+                    <td>${donorContact}</td>
+                    <td><button class="btn delete-btn" onclick="deleteRow(this)">Delete</button></td>
+                `;
+                table.appendChild(newRow);
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
+    </script>
+</body>
+
+</html>

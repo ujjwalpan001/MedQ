@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Valley Medical Center</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #2196f3, #03a9f4);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .profile-header .hospital-logo {
+            border: 5px solid white;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .profile-header h1 {
+            font-size: 36px;
+            margin-top: 20px;
+        }
+
+        .profile-header h3 {
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        .doctor-card {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .doctor-profile {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #343a40;
+            margin-top: 40px;
+        }
+
+        .card-custom {
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .card-custom .card-header {
+            background-color: #2196f3;
+            color: white;
+            border-radius: 15px 15px 0 0;
+            padding: 15px;
+            font-size: 20px;
+        }
+
+        .card-custom .card-body {
+            padding: 20px;
+        }
+
+        .btn-custom {
+            background-color: #2196f3;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .btn-custom:hover {
+            background-color: #1976d2;
+        }
+
+        .facility-icon {
+            font-size: 30px;
+            color: #2196f3;
+        }
+
+        .ai-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .ai-stats div {
+            text-align: center;
+        }
+
+        .ai-stats h3 {
+            font-size: 40px;
+            color: #2196f3;
+        }
+
+        .ai-stats p {
+            font-size: 18px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <img src="https://cdn.apollohospitals.com/dev-apollohospitals/2022/05/apollo-proton_mobile-613c4b376e4c8-1-3.jpg" alt="Apollo Hospital Logo" class="hospital-logo">
+        <h1>Green Valley Medical Center</h1>
+        <h3>Pioneering Healthcare Excellence Since 1983</h3>
+    </div>
+
+    <div class="container mt-5">
+        <!-- AI-Enhanced Stats Section -->
+        <div class="ai-stats">
+            <div>
+                <h3>500+</h3>
+                <p>Doctors</p>
+            </div>
+            <div>
+                <h3>1200+</h3>
+                <p>Bed Capacity</p>
+            </div>
+            <div>
+                <h3>2M+</h3>
+                <p>Patients Treated</p>
+            </div>
+        </div>
+
+        <!-- General Information Section -->
+        <div class="section-title">General Information</div>
+        <div class="card card-custom">
+            <div class="card-header">About Us</div>
+            <div class="card-body">
+                <p>,Green Valley Medical Center established in 1983, is one of the leading healthcare service providers in India and beyond. Known for its cutting-edge medical technologies, expert doctors, and state-of-the-art infrastructure, Apollo is committed to saving and enriching lives across the globe.</p>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="section-title">Services We Offer</div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-header">Cardiology</div>
+                    <div class="card-body">
+                        <p>Our expert cardiologists provide world-class cardiac care, from diagnostic testing to interventional procedures and surgeries.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-header">Oncology</div>
+                    <div class="card-body">
+                        <p>We offer comprehensive cancer care with the latest in chemotherapy, radiation therapy, and surgical oncology.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-header">Orthopedics</div>
+                    <div class="card-body">
+                        <p>Our orthopedic team provides care for bone and joint disorders, specializing in joint replacement surgeries and sports injuries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Doctors Section with Profile Pictures -->
+        <div class="section-title">Our Doctors</div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-custom doctor-card">
+                    <img src="https://media.istockphoto.com/id/177373093/photo/indian-male-doctor.jpg?s=612x612&w=0&k=20&c=5FkfKdCYERkAg65cQtdqeO_D0JMv6vrEdPw3mX1Lkfg=" class="doctor-profile" alt="Dr. Mehta">
+                    <div class="card-header">Dr. A. Mehta</div>
+                    <div class="card-body">
+                        <p><strong>Specialty:</strong> Cardiology</p>
+                        <p><strong>Experience:</strong> 20 years</p>
+                        <p>Dr. Mehta is one of the leading cardiologists in the country, with vast experience in heart surgeries and treatments.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom doctor-card">
+                    <img src="https://static.vecteezy.com/system/resources/previews/028/287/384/non_2x/a-mature-indian-male-doctor-on-a-white-background-ai-generated-photo.jpg" class="doctor-profile" alt="Dr. Varma">
+                    <div class="card-header">Dr. K. Varma</div>
+                    <div class="card-body">
+                        <p><strong>Specialty:</strong> Oncology</p>
+                        <p><strong>Experience:</strong> 15 years</p>
+                        <p>Dr. Varma specializes in cancer treatments, focusing on personalized therapy for all stages of cancer.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom doctor-card">
+                    <img src="https://www.internationalinsurance.com/wp-content/uploads/2021/04/Indian-doctor-at-desk-scaled.jpg" class="doctor-profile" alt="Dr. R. Kapoor">
+                    <div class="card-header">Dr. R. Kapoor</div>
+                    <div class="card-body">
+                        <p><strong>Specialty:</strong> Orthopedics</p>
+                        <p><strong>Experience:</strong> 22 years</p>
+                        <p>Dr. Kapoor is an expert in joint replacement surgeries and advanced orthopedic care.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="section-title">Contact Information</div>
+        <div class="contact-info">
+            <i class="bi bi-telephone-fill"></i> +1234567890
+        </div>
+        <div class="contact-info">
+            <i class="bi bi-envelope-fill"></i> info@greenvalley.com
+        </div>
+        <div class="contact-info">
+            <i class="bi bi-geo-alt-fill"></i> 123 green valley Avenue, City, Country
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+</body>
+</html>

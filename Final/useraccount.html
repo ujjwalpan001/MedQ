@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Account Section with View Password</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        .account-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            padding: 20px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 10px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .account-details p {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .form-label {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 40px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        body {
+                    background-image: url('https://i.ibb.co/P41WVkW/background.jpg');
+                    background-size: cover;
+                    background-attachment: fixed;
+                    background-position: center;
+                    background-color: #f0f0f0;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="account-container">
+        <!-- Account Details Card -->
+        <div class="card">
+            <div class="card-header">
+                Account Details
+            </div>
+            <div class="card-body">
+                <div class="account-details">
+                    <p><strong>Full Name:</strong> <span id="full-name">John Doe</span></p>
+                    <p><strong>Email:</strong> <span id="email">john@example.com</span></p>
+                    <p><strong>Phone Number:</strong> <span id="phone-number">+1234567890</span></p>
+                    <p><strong>Address:</strong> <span id="address">123 Main Street, City, Country</span></p>
+                    <p><strong>Date of Birth:</strong> <span id="dob">1990-01-01</span></p>
+                    <p><strong>Gender:</strong> <span id="gender">Male</span></p>
+                    <p><strong>Password:</strong> <span id="password"></span></p>
+                </div>
+                <button id="update-btn" class="btn btn-primary" onclick="editDetails()">Update</button>
+            </div>
+        </div>
+
+        <!-- Edit Form (Initially hidden) -->
+        <div class="card mt-5" id="edit-form" style="display:none;">
+            <div class="card-header">
+                Edit Account Details
+            </div>
+            <div class="card-body">
+                <form id="account-form">
+                    <div class="mb-3">
+                        <label for="edit-name" class="form-label">Full Name:</label>
+                        <input type="text" class="form-control" id="edit-name" value="John Doe">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="edit-email" value="john@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-phone" class="form-label">Phone Number:</label>
+                        <input type="text" class="form-control" id="edit-phone" value="+1234567890">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-address" class="form-label">Address:</label>
+                        <input type="text" class="form-control" id="edit-address" value="123 Main Street, City, Country">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-dob" class="form-label">Date of Birth:</label>
+                        <input type="date" class="form-control" id="edit-dob" value="1990-01-01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-gender" class="form-label">Gender:</label>
+                        <select class="form-select" id="edit-gender">
+                            <option value="Male" selected>Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 password-wrapper">
+                        <label for="edit-password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="edit-password" value="password123">
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">
+                            <i class="bi bi-eye-slash" id="password-icon"></i>
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="saveDetails()">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+
+    <script>
+        function editDetails() {
+            document.getElementById("edit-form").style.display = "block";
+        }
+
+        function saveDetails() {
+            var name = document.getElementById("edit-name").value;
+            var email = document.getElementById("edit-email").value;
+            var phone = document.getElementById("edit-phone").value;
+            var address = document.getElementById("edit-address").value;
+            var dob = document.getElementById("edit-dob").value;
+            var gender = document.getElementById("edit-gender").value;
+            var password = document.getElementById("edit-password").value;
+
+            document.getElementById("full-name").innerText = name;
+            document.getElementById("email").innerText = email;
+            document.getElementById("phone-number").innerText = phone;
+            document.getElementById("address").innerText = address;
+            document.getElementById("dob").innerText = dob;
+            document.getElementById("gender").innerText = gender;
+            document.getElementById("password").innerText = ""; // Hide actual password
+
+            document.getElementById("edit-form").style.display = "none";
+        }
+
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("edit-password");
+            var passwordIcon = document.getElementById("password-icon");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                passwordIcon.classList.remove('bi-eye-slash');
+                passwordIcon.classList.add('bi-eye');
+            } else {
+                passwordInput.type = "password";
+                passwordIcon.classList.remove('bi-eye');
+                passwordIcon.classList.add('bi-eye-slash');
+            }
+        }
+    </script>
+
+</body>
+</html>

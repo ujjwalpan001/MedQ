@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as Hospital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-image: url('https://i.ibb.co/P41WVkW/background.jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .register-container {
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: purple;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 48px;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], input[type="password"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .error, .success {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Hospital Registration</h2>
+        <!-- Form with additional fields and validation -->
+        <form onsubmit="return validateAndRedirect()">
+            <label for="hospitalName">Hospital Name:</label>
+            <input type="text" id="hospitalName" name="hospitalName" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" placeholder="10-digit number" required>
+
+            <label for="address">Hospital Address:</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+            <div class="form-check">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the terms and conditions</label>
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        function validateAndRegister() {
+            var hospitalName = document.getElementById('hospitalName').value;
+            var email = document.getElementById('email').value;
+            var contact = document.getElementById('contact').value;
+            var address = document.getElementById('address').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            var terms = document.getElementById('terms').checked;
+        
+            // Check if all fields are filled
+            if (!hospitalName || !email || !contact || !address || !password || !confirmPassword) {
+                alert("Please fill out all fields.");
+                return false;
+            }
+        
+            // Validate email
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+        
+            // Validate contact number
+            if (!/^\d{10}$/.test(contact)) {
+                alert("Please enter a valid 10-digit contact number.");
+                return false;
+            }
+        
+            // Validate password
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+        
+            // Validate password match
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+        
+            // Ensure terms are agreed
+            if (!terms) {
+                alert("You must agree to the terms and conditions.");
+                return false;
+            }
+        
+            // Save registration details to local storage
+            localStorage.setItem('registeredEmail', email);
+            localStorage.setItem('registeredPassword', password);
+        
+            alert("Registration successful! Redirecting to admin login...");
+            window.location.href = "admin.html"; // Redirect to admin login page
+            return false;
+        }
+        
+    </script>
+
+</body>
+</html>

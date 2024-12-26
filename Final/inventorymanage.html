@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Inventory Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #0d6efd;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+
+        input, button {
+            margin: 10px;
+        }
+
+        .alert-low {
+            color: red;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .table-section {
+            margin-bottom: 40px;
+        }
+
+        .add-btn-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>Hospital Medicine Inventory</h2>
+    <div class="table-section">
+        <table id="medicineTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Med ID</th>
+                    <th>Quantity</th>
+                    <th>Restock</th>
+                    <th>Dispatch</th>
+                    <th>Alert</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Paracetamol</td>
+                    <td>112</td>
+                    <td id="quantity-112">200</td>
+                    <td><input type="number" id="buy-112" placeholder="Enter number" min="0"></td>
+                    <td><input type="number" id="sell-112" placeholder="Enter number" min="0"></td>
+                    <td class="alert-low">OK</td>
+                    <td><button onclick="editRow(this)">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Ibuprofen</td>
+                    <td>113</td>
+                    <td id="quantity-113">50</td>
+                    <td><input type="number" id="buy-113" placeholder="Enter number" min="0"></td>
+                    <td><input type="number" id="sell-113" placeholder="Enter number" min="0"></td>
+                    <td class="alert-low">Low Stock</td>
+                    <td><button onclick="editRow(this)">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Aspirin</td>
+                    <td>114</td>
+                    <td id="quantity-114">300</td>
+                    <td><input type="number" id="buy-114" placeholder="Enter number" min="0"></td>
+                    <td><input type="number" id="sell-114" placeholder="Enter number" min="0"></td>
+                    <td class="alert-low">OK</td>
+                    <td><button onclick="editRow(this)">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Amoxicillin</td>
+                    <td>115</td>
+                    <td id="quantity-115">10</td>
+                    <td><input type="number" id="buy-115" placeholder="Enter number" min="0"></td>
+                    <td><input type="number" id="sell-115" placeholder="Enter number" min="0"></td>
+                    <td class="alert-low">Low Stock</td>
+                    <td><button onclick="editRow(this)">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Metformin</td>
+                    <td>116</td>
+                    <td id="quantity-116">500</td>
+                    <td><input type="number" id="buy-116" placeholder="Enter number" min="0"></td>
+                    <td><input type="number" id="sell-116" placeholder="Enter number" min="0"></td>
+                    <td class="alert-low">OK</td>
+                    <td><button onclick="editRow(this)">Edit</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button onclick="updateInventory()">Update Inventory</button>
+
+        <h3>Add New Medicine</h3>
+        <input type="text" id="medicineName" placeholder="Medicine Name">
+        <input type="text" id="medicineId" placeholder="Medicine ID">
+        <input type="number" id="medicineQuantity" placeholder="Quantity" min="0">
+        <button onclick="addMedicine()">Add Medicine</button>
+    </div>
+
+    <!-- Medical Equipment Section -->
+    <h2>Medical Equipment Inventory</h2>
+    <div class="table-section">
+        <table id="equipmentTable">
+            <thead>
+                <tr>
+                    <th>Equipment Name</th>
+                    <th>Equip ID</th>
+                    <th>Quantity</th>
+                    <th>In Use</th>
+                    <th>Remaining</th>
+                    <th>Alert</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Oxygen Cylinder</td>
+                    <td>201</td>
+                    <td id="quantity-eq-201">100</td>
+                    <td><input type="number" id="inuse-201" placeholder="Enter number" min="0"></td>
+                    <td><input type="number" id="dispatch-201" placeholder="Enter number" min="0"></td>
+                    <td class="alert-low">OK</td>
+                    <td><button onclick="editEquipRow(this)">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Ventilator</td>
+                    <td>202</td>
+                    <td id="quantity-eq-202">30</td>
+                    <td><input type="number" id="inuse-202" placeholder="Enter number" min="0"></td>
+                    <td><input type="number" id="dispatch-202" placeholder="Enter number" min="0"></td>
+                    <td class="alert-low">Low Stock</td>
+                    <td><button onclick="editEquipRow(this)">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>ECG Machine</td>
+                    <td>203</td>
+                    <td id="quantity-eq-203">10</td>
+                    <td><input type="number" id="inuse-203" placeholder="Enter number" min="0"></td>
+                    <td><input type="number" id="dispatch-203" placeholder="Enter number" min="0"></td>
+                    <td class="alert-low">Low Stock</td>
+                    <td><button onclick="editEquipRow(this)">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Defibrillator</td>
+                    <td>204</td>
+                    <td id="quantity-eq-204">50</td>
+                    <td><input type="number" id="inuse-204" placeholder="Enter number" min="0"></td>
+                    <td><input type="number" id="dispatch-204" placeholder="Enter number" min="0"></td>
+                    <td class="alert-low">OK</td>
+                    <td><button onclick="editEquipRow(this)">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Anesthesia Machine</td>
+                    <td>205</td>
+                    <td id="quantity-eq-205">15</td>
+                    <td><input type="number" id="inuse-205" placeholder="Enter number" min="0"></td>
+                    <td><input type="number" id="dispatch-205" placeholder="Enter number" min="0"></td>
+                    <td class="alert-low">Low Stock</td>
+                    <td><button onclick="editEquipRow(this)">Edit</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="add-btn-section">
+            <h3>Add New Equipment</h3>
+            <input type="text" id="equipName" placeholder="Equipment Name">
+            <input type="text" id="equipId" placeholder="Equipment ID">
+            <input type="number" id="equipQuantity" placeholder="Quantity" min="0">
+            <button onclick="addEquipment()">Add Equipment</button>
+        </div>
+    </div>
+
+    <script>
+        function updateInventory() {
+            const rows = document.querySelectorAll('#medicineTable tbody tr');
+            rows.forEach(row => {
+                const medId = row.cells[1].innerText;
+                const quantityCell = document.getElementById(`quantity-${medId}`);
+                const buy = parseInt(document.getElementById(`buy-${medId}`).value) || 0;
+                const sell = parseInt(document.getElementById(`sell-${medId}`).value) || 0;
+                let quantity = parseInt(quantityCell.innerText);
+                let newQuantity = quantity + buy - sell;
+                if (newQuantity < 0) {
+                    alert(`Error: Quantity for ${row.cells[0].innerText} cannot be negative!`);
+                } else {
+                    quantityCell.innerText = newQuantity;
+                    row.cells[5].innerText = newQuantity < 50 ? 'Low Stock' : 'OK';
+                }
+                document.getElementById(`buy-${medId}`).value = '';
+                document.getElementById(`sell-${medId}`).value = '';
+            });
+        }
+
+        function addMedicine() {
+            const name = document.getElementById('medicineName').value;
+            const id = document.getElementById('medicineId').value;
+            const quantity = document.getElementById('medicineQuantity').value;
+            if (!name || !id || quantity < 0) {
+                alert('Please fill in all fields with valid values.');
+                return;
+            }
+            const existingMed = document.getElementById(`quantity-${id}`);
+            if (existingMed) {
+                alert('Error: Medicine ID already exists. Update existing entry.');
+                return;
+            }
+            const table = document.getElementById('medicineTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td>${name}</td>
+                <td>${id}</td>
+                <td id="quantity-${id}">${quantity}</td>
+                <td><input type="number" id="buy-${id}" placeholder="Enter number" min="0"></td>
+                <td><input type="number" id="sell-${id}" placeholder="Enter number" min="0"></td>
+                <td class="alert-low">${quantity < 50 ? 'Low Stock' : 'OK'}</td>
+                <td><button onclick="editRow(this)">Edit</button></td>
+            `;
+            document.getElementById('medicineName').value = '';
+            document.getElementById('medicineId').value = '';
+            document.getElementById('medicineQuantity').value = '';
+        }
+
+        function editRow(button) {
+            const row = button.parentNode.parentNode;
+            const nameCell = row.cells[0];
+            const idCell = row.cells[1];
+            const quantityCell = row.cells[2];
+            const currentName = nameCell.innerText;
+            const currentId = idCell.innerText;
+            const currentQuantity = quantityCell.innerText;
+            nameCell.innerHTML = `<input type="text" value="${currentName}" id="edit-name">`;
+            idCell.innerHTML = `<input type="text" value="${currentId}" id="edit-id">`;
+            quantityCell.innerHTML = `<input type="number" value="${currentQuantity}" min="0" id="edit-quantity">`;
+            button.innerText = 'Save';
+            button.onclick = function() { saveRow(button); };
+        }
+
+        function saveRow(button) {
+            const row = button.parentNode.parentNode;
+            const newName = document.getElementById('edit-name').value;
+            const newId = document.getElementById('edit-id').value;
+            const newQuantity = document.getElementById('edit-quantity').value;
+            if (!newName || !newId || newQuantity < 0) {
+                alert('Please fill in valid values.');
+                return;
+            }
+            row.cells[0].innerText = newName;
+            row.cells[1].innerText = newId;
+            row.cells[2].innerHTML = `<span id="quantity-${newId}">${newQuantity}</span>`;
+            row.cells[5].innerText = newQuantity < 50 ? 'Low Stock' : 'OK';
+            button.innerText = 'Edit';
+            button.onclick = function() { editRow(button); };
+        }
+
+        function addEquipment() {
+            const name = document.getElementById('equipName').value;
+            const id = document.getElementById('equipId').value;
+            const quantity = document.getElementById('equipQuantity').value;
+            if (!name || !id || quantity < 0) {
+                alert('Please fill in all fields with valid values.');
+                return;
+            }
+            const existingEquip = document.getElementById(`quantity-eq-${id}`);
+            if (existingEquip) {
+                alert('Error: Equipment ID already exists. Update existing entry.');
+                return;
+            }
+            const table = document.getElementById('equipmentTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td>${name}</td>
+                <td>${id}</td>
+                <td id="quantity-eq-${id}">${quantity}</td>
+                <td><input type="number" id="inuse-${id}" placeholder="Enter number" min="0"></td>
+                <td><input type="number" id="dispatch-${id}" placeholder="Enter number" min="0"></td>
+                <td class="alert-low">${quantity < 50 ? 'Low Stock' : 'OK'}</td>
+                <td><button onclick="editEquipRow(this)">Edit</button></td>
+            `;
+            document.getElementById('equipName').value = '';
+            document.getElementById('equipId').value = '';
+            document.getElementById('equipQuantity').value = '';
+        }
+
+        function editEquipRow(button) {
+            const row = button.parentNode.parentNode;
+            const nameCell = row.cells[0];
+            const idCell = row.cells[1];
+            const quantityCell = row.cells[2];
+            const currentName = nameCell.innerText;
+            const currentId = idCell.innerText;
+            const currentQuantity = quantityCell.innerText;
+            nameCell.innerHTML = `<input type="text" value="${currentName}" id="edit-equip-name">`;
+            idCell.innerHTML = `<input type="text" value="${currentId}" id="edit-equip-id">`;
+            quantityCell.innerHTML = `<input type="number" value="${currentQuantity}" min="0" id="edit-equip-quantity">`;
+            button.innerText = 'Save';
+            button.onclick = function() { saveEquipRow(button); };
+        }
+
+        function saveEquipRow(button) {
+            const row = button.parentNode.parentNode;
+            const newName = document.getElementById('edit-equip-name').value;
+            const newId = document.getElementById('edit-equip-id').value;
+            const newQuantity = document.getElementById('edit-equip-quantity').value;
+            if (!newName || !newId || newQuantity < 0) {
+                alert('Please fill in valid values.');
+                return;
+            }
+            row.cells[0].innerText = newName;
+            row.cells[1].innerText = newId;
+            row.cells[2].innerHTML = `<span id="quantity-eq-${newId}">${newQuantity}</span>`;
+            row.cells[5].innerText = newQuantity < 50 ? 'Low Stock' : 'OK';
+            button.innerText = 'Edit';
+            button.onclick = function() { editEquipRow(button); };
+        }
+
+    </script>
+
+</body>
+</html>

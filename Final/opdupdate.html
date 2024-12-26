@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPD Status Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('https://i.ibb.co/P41WVkW/background.jpg'); /* Adjust the path as per your file structure */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <h1>OPD Status Table</h1>
+    <table id="opdTable">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>OPD Status</th>
+                <th>Slip</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Default patient rows -->
+        </tbody>
+    </table>
+
+    <h2 id="formTitle">Add New Entry</h2>
+    <form id="addForm">
+        <label for="patientName">Patient Name:</label>
+        <input type="text" id="patientName" required><br>
+
+        <label for="opdStatus">OPD Status:</label>
+        <select id="opdStatus" required>
+            <option value="in_queue">In Queue</option>
+            <option value="completed">Completed</option>
+        </select><br>
+
+        <label for="slipNumber">Slip Number (if completed):</label>
+        <input type="text" id="slipNumber"><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" rows="4" cols="50"></textarea><br>
+
+        <button type="submit">Save Entry</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultPatients = [
+                { name: 'John Doe', opdStatus: 'in_queue', slip: '', description: 'Initial consultation.' },
+                { name: 'Jane Smith', opdStatus: 'completed', slip: '12345', description: 'Follow-up needed.' },
+                { name: 'Emily Johnson', opdStatus: 'in_queue', slip: '', description: 'Routine check-up.' },
+                { name: 'Michael Brown', opdStatus: 'completed', slip: '67890', description: 'Prescription given.' },
+                { name: 'Sarah Davis', opdStatus: 'in_queue', slip: '', description: 'Waiting for lab results.' },
+            ];
+
+            let editingIndex = -1;
+
+            const tableBody = document.querySelector('#opdTable tbody');
+            const formTitle = document.getElementById('formTitle');
+            const patientNameInput = document.getElementById('patientName');
+            const opdStatusInput = document.getElementById('opdStatus');
+            const slipNumberInput = document.getElementById('slipNumber');
+            const descriptionInput = document.getElementById('description');
+            const form = document.getElementById('addForm');
+
+            // Function to render a row
+            function renderRow(patient, index) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${patient.name}</td>
+                    <td>${patient.opdStatus === 'in_queue' ? 'In Queue' : 'Completed'}</td>
+                    <td>${patient.slip ? patient.slip : 'Not Completed'}</td>
+                    <td>${patient.description}</td>
+                    <td><button onclick="editPatient(${index})">Edit</button></td>
+                `;
+                tableBody.appendChild(row);
+            }
+
+            // Render default patients
+            defaultPatients.forEach(renderRow);
+
+            // Form submission handler
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const patientName = patientNameInput.value;
+                const opdStatus = opdStatusInput.value;
+                const slipNumber = opdStatus === 'completed' ? slipNumberInput.value : '';
+                const description = descriptionInput.value;
+
+                const newPatient = {
+                    name: patientName,
+                    opdStatus,
+                    slip: slipNumber,
+                    description
+                };
+
+                if (editingIndex === -1) {
+                    // Add new entry
+                    defaultPatients.push(newPatient);
+                    renderRow(newPatient, defaultPatients.length - 1);
+                } else {
+                    // Update existing entry
+                    defaultPatients[editingIndex] = newPatient;
+                    updateTable();
+                    editingIndex = -1;
+                    formTitle.textContent = "Add New Entry";
+                }
+
+                // Clear form
+                form.reset();
+            });
+
+            // Function to edit a patient
+            window.editPatient = (index) => {
+                const patient = defaultPatients[index];
+                patientNameInput.value = patient.name;
+                opdStatusInput.value = patient.opdStatus;
+                slipNumberInput.value = patient.slip;
+                descriptionInput.value = patient.description;
+
+                editingIndex = index;
+                formTitle.textContent = "Edit Entry";
+            };
+
+            // Function to update the entire table
+            function updateTable() {
+                tableBody.innerHTML = '';
+                defaultPatients.forEach(renderRow);
+            }
+        });
+    </script>
+</body>
+</html>

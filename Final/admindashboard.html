@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 15px 10px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            background-color: #575757;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #000;
+            z-index: 2;
+        }
+
+        .main-content {
+            transition: margin-left 0.5s;
+            padding: 20px;
+
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('https://i.ibb.co/P41WVkW/background.jpg');
+            /* Adjust the path as per your file structure */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+
+        .hero2 {
+            transition: margin-left 0.5s;
+            padding: 20px;
+        }
+
+        .navbar-custom {
+            transition: margin-left 0.5s;
+            padding: 20px;
+
+            margin: 0;
+            padding: 0;
+            
+            background-image: url('https://i.ibb.co/P41WVkW/background.jpg');
+            /* Adjust the path as per your file structure */
+            background-size: cover;
+           
+            border-bottom: 2px solid #ddd;
+        }
+
+        .navbar-brand {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+        }
+
+        /* Other styles for the page */
+        body {
+            transition: margin-left 0.5s;
+            padding: 20px;
+
+            margin: 0;
+            padding: 0;
+            
+            background-image: url('https://i.ibb.co/P41WVkW/background.jpg');
+            /* Adjust the path as per your file structure */
+            background-size: cover;
+            
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Small Menu Icon -->
+    <span class="menu-icon" onclick="openNav()">&#9776;</span>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="admindashboard.html">Home</a>
+        <a href="profilehospital.html">Profile</a>
+        <a href="adminacc.html">Account</a>
+
+    </div>
+
+    <!-- Main content -->
+     <!-- Navigation Bar -->
+     <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ Hospital Dashboard</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto"></form>
+                <a href="home.html" class="btn btn-outline-dark">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+
+        <!-- Dashboard Cards -->
+        <div class="hero2">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-center">
+                            <img src="patient_admin.jpg" class="card-img-top mx-auto" alt="Patient Records"
+                                style="width: 100px; margin-top: 10px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Patient Records</h5>
+                                <a href="patientrecord.html" class="btn btn-primary">Patient Records</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-center">
+                            <img src="med_admin.jpg" class="card-img-top mx-auto" alt="Medicine Inventory"
+                                style="width: 100px; margin-top: 10px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Medicine Inventory</h5>
+                                <a href="inventorymanage.html" class="btn btn-primary">Medicine Inventory</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-center">
+                            <img src="blood_admin.jpg" class="card-img-top mx-auto" alt="Blood Status Update"
+                                style="width: 100px; margin-top: 10px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Blood Status Update</h5>
+                                <a href="bloodmanage.html" class="btn btn-primary">Blood status / update </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-center">
+                            <img src="bed_admin.jpg" class="card-img-top mx-auto" alt="Bed Availability Update"
+                                style="width: 100px; margin-top: 10px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Bed Availability Update</h5>
+                                <a href="bed availibility.html" class="btn btn-primary">Bed Availability</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-center">
+                            <img src="appoint_admin.jpg" class="card-img-top mx-auto" alt="Appointment Patient list"
+                                style="width: 100px; margin-top: 10px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Appointment Patient list</h5>
+                                <a href="appointment.html" class="btn btn-primary">Appointment List</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-center">
+                            <img src="opd_admin.jpg" class="card-img-top mx-auto" alt="OPD Status & Update"
+                                style="width: 100px; margin-top: 10px;">
+                            <div class="card-body">
+                                <h5 class="card-title">OPD Status & Update</h5>
+                                <a href="opdupdate.html" class="btn btn-primary">OPD Status and Update</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS for sidenav functionality -->
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

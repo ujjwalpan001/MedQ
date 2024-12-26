@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Records</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+
+        .header {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .table-section {
+            margin-top: 30px;
+        }
+
+        .add-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            margin-top: 20px;
+        }
+
+        .add-btn:hover {
+            background-color: #218838;
+        }
+
+        .edit-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .edit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .modal-header {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .modal-footer .btn-primary {
+            background-color: #28a745;
+        }
+
+        .modal-footer .btn-secondary {
+            background-color: #6c757d;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('https://i.ibb.co/P41WVkW/background.jpg'); /* Adjust the path as per your file structure */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Patient Records</h1>
+    </div>
+
+    <!-- Table for Patient Records -->
+    <div class="container table-section">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Phone Number</th>
+                    <th>Admitted Date</th>
+                    <th>Problem</th>
+                    <th>Condition</th>
+                    <th>Discharge Date</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody id="patientTable">
+                <!-- Patient data will be dynamically added here -->
+            </tbody>
+        </table>
+        <button class="btn add-btn" onclick="openAddModal()">Add Patient</button>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div class="modal fade" id="addEditModal" tabindex="-1" aria-labelledby="addEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEditModalLabel">Add/Edit Patient</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="patientName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="patientName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientAge" class="form-label">Age</label>
+                        <input type="number" class="form-control" id="patientAge">
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientGender" class="form-label">Gender</label>
+                        <select class="form-select" id="patientGender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientPhone" class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" id="patientPhone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="admitDate" class="form-label">Admitted Date</label>
+                        <input type="date" class="form-control" id="admitDate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientProblem" class="form-label">Problem</label>
+                        <input type="text" class="form-control" id="patientProblem">
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientCondition" class="form-label">Condition</label>
+                        <input type="text" class="form-control" id="patientCondition">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dischargeDate" class="form-label">Discharge Date</label>
+                        <input type="date" class="form-control" id="dischargeDate">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="savePatient()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let patientData = [
+            {
+                name: 'John Doe',
+                age: 45,
+                gender: 'Male',
+                phone: '555-1234',
+                admitDate: '2024-09-01',
+                problem: 'Fever',
+                condition: 'Stable',
+                dischargeDate: '2024-09-05'
+            },
+            {
+                name: 'Jane Smith',
+                age: 30,
+                gender: 'Female',
+                phone: '555-5678',
+                admitDate: '2024-09-10',
+                problem: 'Cough',
+                condition: 'Critical',
+                dischargeDate: '2024-09-14'
+            },
+            {
+                name: 'Michael Brown',
+                age: 60,
+                gender: 'Male',
+                phone: '555-8765',
+                admitDate: '2024-08-25',
+                problem: 'Heart Attack',
+                condition: 'Serious',
+                dischargeDate: '2024-09-12'
+            },
+            {
+                name: 'Emily Davis',
+                age: 50,
+                gender: 'Female',
+                phone: '555-4321',
+                admitDate: '2024-09-05',
+                problem: 'Fracture',
+                condition: 'Stable',
+                dischargeDate: '2024-09-11'
+            },
+            {
+                name: 'Chris Wilson',
+                age: 40,
+                gender: 'Male',
+                phone: '555-9876',
+                admitDate: '2024-09-07',
+                problem: 'Diabetes',
+                condition: 'Stable',
+                dischargeDate: '2024-09-15'
+            },
+            {
+                name: 'Anna Taylor',
+                age: 35,
+                gender: 'Female',
+                phone: '555-6543',
+                admitDate: '2024-09-03',
+                problem: 'Migraine',
+                condition: 'Improving',
+                dischargeDate: '2024-09-10'
+            }
+        ];
+
+        // Function to refresh the table
+        function refreshTable() {
+            const tbody = document.getElementById('patientTable');
+            tbody.innerHTML = '';
+
+            patientData.forEach((patient, index) => {
+                const row = `
+                <tr>
+                    <td>${patient.name}</td>
+                    <td>${patient.age}</td>
+                    <td>${patient.gender}</td>
+                    <td>${patient.phone}</td>
+                    <td>${patient.admitDate}</td>
+                    <td>${patient.problem}</td>
+                    <td>${patient.condition}</td>
+                    <td>${patient.dischargeDate}</td>
+                    <td><button class="btn edit-btn" onclick="openEditModal(${index})">Edit</button></td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Function to open Add Patient Modal
+        function openAddModal() {
+            editIndex = -1;
+            clearModalFields();
+            document.getElementById('addEditModalLabel').innerText = "Add New Patient";
+            const addEditModal = new bootstrap.Modal(document.getElementById('addEditModal'));
+            addEditModal.show();
+        }
+
+        // Function to open Edit Modal for a patient
+        function openEditModal(index) {
+            editIndex = index;
+            const patient = patientData[index];
+            document.getElementById('patientName').value = patient.name;
+            document.getElementById('patientAge').value = patient.age;
+            document.getElementById('patientGender').value = patient.gender;
+            document.getElementById('patientPhone').value = patient.phone;
+            document.getElementById('admitDate').value = patient.admitDate;
+            document.getElementById('patientProblem').value = patient.problem;
+            document.getElementById('patientCondition').value = patient.condition;
+            document.getElementById('dischargeDate').value = patient.dischargeDate;
+
+            document.getElementById('addEditModalLabel').innerText = "Edit Patient Details";
+            const addEditModal = new bootstrap.Modal(document.getElementById('addEditModal'));
+            addEditModal.show();
+        }
+
+        // Function to clear modal fields
+        function clearModalFields() {
+            document.getElementById('patientName').value = '';
+            document.getElementById('patientAge').value = '';
+            document.getElementById('patientGender').value = '';
+            document.getElementById('patientPhone').value = '';
+            document.getElementById('admitDate').value = '';
+            document.getElementById('patientProblem').value = '';
+            document.getElementById('patientCondition').value = '';
+            document.getElementById('dischargeDate').value = '';
+        }
+
+        // Function to save the patient details
+        function savePatient() {
+            const name = document.getElementById('patientName').value;
+            const age = document.getElementById('patientAge').value;
+            const gender = document.getElementById('patientGender').value;
+            const phone = document.getElementById('patientPhone').value;
+            const admitDate = document.getElementById('admitDate').value;
+            const problem = document.getElementById('patientProblem').value;
+            const condition = document.getElementById('patientCondition').value;
+            const dischargeDate = document.getElementById('dischargeDate').value;
+
+            const newPatient = { name, age, gender, phone, admitDate, problem, condition, dischargeDate };
+
+            if (editIndex === -1) {
+                // Add new patient
+                patientData.push(newPatient);
+            } else {
+                // Update existing patient
+                patientData[editIndex] = newPatient;
+            }
+
+            refreshTable();
+            const addEditModal = bootstrap.Modal.getInstance(document.getElementById('addEditModal'));
+            addEditModal.hide();
+        }
+
+        let editIndex = -1;
+
+        // Initialize the table on page load
+        window.onload = () => {
+            refreshTable();
+        };
+    </script>
+</body>
+
+</html>

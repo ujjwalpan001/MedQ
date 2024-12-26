@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedQ+ - Hospital Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styleforhome.css">
+</head>
+<body>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+        </header>
+        
+        <div class="login-form-container">
+            <center>
+                <font face="Brush Script MT" size="7" color="purple">
+                    <b>Enter Login Details:</b>
+                </font>
+            </center>
+
+            <!-- Background image styling -->
+            <style>
+                body {
+                    background-image: url('https://i.ibb.co/P41WVkW/background.jpg');
+                    background-size: cover;
+                    background-attachment: fixed;
+                    background-position: center;
+                    background-color: #f0f0f0;
+                }
+
+                .content {
+                    text-align: center;
+                    color: white;
+                    padding: 50px;
+                }
+            </style>
+
+            <!-- Login form -->
+            <form>
+
+                <div class="form-group">
+                     <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                </div>
+
+                <!-- Updated Login button with validation -->
+                <button type="button" class="btn btn-primary btn-block" onclick="validateAndProceed()">Login</button>
+
+                <p>Or login with</p>
+                <div class="social-login">
+                    <button type="button" class="btn btn-facebook">Facebook</button>
+                    <button type="button" class="btn btn-google">Google</button>
+                </div>
+                <p>Not a member? <a href="signup.html">Sign up now</a></p>
+                <p>Login as <a href="admin.html">Admin</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function validateAndProceed() {
+            // Get the values of email and password inputs
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+    
+            // Default admin credentials
+            var defaultEmail = "admin@gmail.com";
+            var defaultPassword = "admin";
+    
+            // Retrieve stored credentials from localStorage
+            var storedEmail = localStorage.getItem("userEmail");
+            var storedPassword = localStorage.getItem("userPassword");
+    
+            // Validate email and password
+            if (email === "" || password === "") {
+                alert("Please enter both email and password.");
+            } else if (
+                (email === storedEmail && password === storedPassword) || // Registered credentials
+                (email === defaultEmail && password === defaultPassword)  // Default admin credentials
+            ) {
+                // If credentials match, proceed to the dashboard
+                alert("Login successful!");
+                window.location.href = "dashboardfinal.html";
+            } else {
+                // If credentials do not match, show an error
+                alert("Invalid email or password. Please try again.");
+            }
+        }
+    </script>
+    
+    
+</body>
+</html>

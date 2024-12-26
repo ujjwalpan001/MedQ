@@ -1,0 +1,41 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: white;
+}
+
+.card {
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card img {
+    max-width: 100px;
+}
+
+/* Custom Icons for Cards */
+.card-img-top {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+.hero2 {
+    position: relative;
+    background-image: url('https://img.freepik.com/free-photo/blur-hospital-clinic-interior_1203-8616.jpg?w=1800&t=st=1726171925~exp=1726172525~hmac=435ac98d2bfaa6720377e1d07d7555b45e4364a5a25fcd29998ca39733625ced');
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display:flex;
+}
+    
+   .hero3{
+    background-color:greenyellow;
+   } 

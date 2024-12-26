@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunshine Hospital</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #1e88e5, #42a5f5);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .profile-header .hospital-logo {
+            border: 5px solid white;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .profile-header h1 {
+            font-size: 36px;
+            margin-top: 20px;
+        }
+
+        .profile-header h3 {
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        .doctor-card {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .doctor-profile {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #343a40;
+            margin-top: 40px;
+        }
+
+        .card-custom {
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .card-custom .card-header {
+            background-color: #1e88e5;
+            color: white;
+            border-radius: 15px 15px 0 0;
+            padding: 15px;
+            font-size: 20px;
+        }
+
+        .card-custom .card-body {
+            padding: 20px;
+        }
+
+        .btn-custom {
+            background-color: #1e88e5;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .btn-custom:hover {
+            background-color: #1565c0;
+        }
+
+        .facility-icon {
+            font-size: 30px;
+            color: #1e88e5;
+        }
+
+        .ai-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .ai-stats div {
+            text-align: center;
+        }
+
+        .ai-stats h3 {
+            font-size: 40px;
+            color: #1e88e5;
+        }
+
+        .ai-stats p {
+            font-size: 18px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <img src="https://www.kimssunshine.co.in/wp-content/uploads/2024/07/Kims-Sunshine-hospital-buidling.jpg" alt="Sunshine Hospital Logo" class="hospital-logo">
+        <h1>Sunshine Hospital</h1>
+        <h3>Empowering Health with Excellence</h3>
+    </div>
+
+    <div class="container mt-5">
+        <!-- AI-Enhanced Stats Section -->
+        <div class="ai-stats">
+            <div>
+                <h3>300+</h3>
+                <p>Doctors</p>
+            </div>
+            <div>
+                <h3>800+</h3>
+                <p>Bed Capacity</p>
+            </div>
+            <div>
+                <h3>1M+</h3>
+                <p>Patients Treated</p>
+            </div>
+        </div>
+
+        <!-- General Information Section -->
+        <div class="section-title">General Information</div>
+        <div class="card card-custom">
+            <div class="card-header">About Us</div>
+            <div class="card-body">
+                <p>Sunshine Hospital is a premier healthcare institution dedicated to providing high-quality medical services with state-of-the-art facilities and expert medical professionals. With a focus on patient care, Sunshine Hospital has been a trusted name in healthcare for decades.</p>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="section-title">Services We Offer</div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-header">Neurology</div>
+                    <div class="card-body">
+                        <p>Expert neurology care with cutting-edge diagnostic and treatment options for disorders of the nervous system.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-header">Cardiology</div>
+                    <div class="card-body">
+                        <p>Our cardiology department offers world-class heart care, from non-invasive procedures to complex surgeries.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-header">Orthopedics</div>
+                    <div class="card-body">
+                        <p>We provide comprehensive orthopedic care, including joint replacement, trauma care, and rehabilitation services.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Doctors Section with Profile Pictures -->
+        <div class="section-title">Our Doctors</div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-custom doctor-card">
+                    <img src="https://sunshineodisha.com/Data1/adm/img/doctor/206120354.png" class="doctor-profile" alt="Dr. S. Rao">
+                    <div class="card-header">Dr. S. Rao</div>
+                    <div class="card-body">
+                        <p><strong>Specialty:</strong> Neurology</p>
+                        <p><strong>Experience:</strong> 18 years</p>
+                        <p>Dr. Rao is a renowned neurologist with extensive experience in treating neurological disorders.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom doctor-card">
+                    <img src="https://images.jdmagicbox.com/v2/comp/hyderabad/h9/040pxx40.xx40.140318102744.l6h9/catalogue/dr-pradeep-reddy-m-penderghast-road-hyderabad-orthopaedic-doctors-t8ww4x.jpg" class="doctor-profile" alt="Dr. A. Patel">
+                    <div class="card-header">Dr. A. Patel</div>
+                    <div class="card-body">
+                        <p><strong>Specialty:</strong> Cardiology</p>
+                        <p><strong>Experience:</strong> 20 years</p>
+                        <p>Dr. Patel is an expert in cardiovascular care, specializing in non-invasive heart procedures and surgeries.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom doctor-card">
+                    <img src="https://sunshineodisha.com/Data1/adm/img/doctor/1547187695.png" class="doctor-profile" alt="Dr. N. Shah">
+                    <div class="card-header">Dr. N. Shah</div>
+                    <div class="card-body">
+                        <p><strong>Specialty:</strong> Orthopedics</p>
+                        <p><strong>Experience:</strong> 15 years</p>
+                        <p>Dr. Shah is a specialist in joint replacement and trauma care, with numerous successful surgeries to his name.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="section-title">Contact Information</div>
+        <div class="contact-info">
+            <i class="bi bi-telephone-fill"></i> +1234567890
+        </div>
+        <div class="contact-info">
+            <i class="bi bi-envelope-fill"></i> info@sunshinehospital.com
+        </div>
+        <div class="contact-info">
+            <i class="bi bi-geo-alt-fill"></i> 456 Sunshine Avenue, City, Country
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+</body>
+</html>
